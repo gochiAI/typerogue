@@ -1,0 +1,109 @@
+.virtual-keyboard {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    transform: translateY(0); /* デフォルトで表示 */
+}
+
+/* キーボードが上部に移動した時のスタイル */
+.virtual-keyboard.top-position {
+    bottom: auto;
+    top: 0;
+}
+
+.keyboard-handle {
+    width: 40px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    margin: 5px auto;
+    cursor: grab;
+    position: relative;
+}
+
+.keyboard-handle::before {
+    content: '⋮';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.keyboard-handle:active {
+    cursor: grabbing;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.keyboard-key {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.keyboard-key:active {
+    background: #ddd;
+}
+
+/* 特殊キーのスタイル */
+.keyboard-key:nth-last-child(3),
+.keyboard-key:nth-last-child(2),
+.keyboard-key:nth-last-child(1) {
+    background: #4CAF50;
+    color: white;
+}
+
+/* モバイル対応のレイアウト調整 */
+@media (max-width: 768px) {
+    #game-area {
+        margin-bottom: 200px; /* 仮想キーボードの高さ分 */
+    }
+
+    .keyboard-key {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+/* タブレット対応 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .keyboard-key {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+/* PCでは仮想キーボードを非表示 */
+@media (min-width: 1025px) {
+    .virtual-keyboard {
+        display: none;
+    }
+    
+    #game-area {
+        margin-bottom: 0;
+    }
+} 
