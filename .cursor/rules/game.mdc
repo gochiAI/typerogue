@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+静的サイトとして作成する。
+ゲーム用のライブラリーは使っても構わない
+
+htmlでの実装は控え、javascriptでゲームを展開する
